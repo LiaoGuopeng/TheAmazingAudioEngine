@@ -1149,14 +1149,14 @@ static OSStatus ioUnitRenderNotifyCallback(void *inRefCon, AudioUnitRenderAction
         AECheckOSStatus(AudioOutputUnitStop(_ioAudioUnit), "AudioOutputUnitStop");
     }
     
-#if TARGET_OS_IPHONE
-    if ( !_interrupted ) {
-        NSError *error = nil;
-        if ( ![((AVAudioSession*)[AVAudioSession sharedInstance]) setActive:NO error:&error] ) {
-            NSLog(@"TAAE: Couldn't deactivate audio session: %@", error);
-        }
-    }
-#endif
+// #if TARGET_OS_IPHONE
+//     if ( !_interrupted ) {
+//         NSError *error = nil;
+//         if ( ![((AVAudioSession*)[AVAudioSession sharedInstance]) setActive:NO error:&error] ) {
+//             NSLog(@"TAAE: Couldn't deactivate audio session: %@", error);
+//         }
+//     }
+// #endif
     
     AEMessageQueueProcessMessagesOnRealtimeThread(_messageQueue);
     [_messageQueue stopPolling];
